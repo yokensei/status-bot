@@ -18,7 +18,7 @@ def is_status_changed_event(res):
     return res["type"] == "user_change"
 
 def is_target_status_emoji(profile):
-    return profile["status_emoji"] == target_status
+    return profile["status_emoji"] == ":" + target_status + ":"
 
 def setup_logger(config):
     if config.has_option(SLACK_SECTION_NAME, "log_output"):
