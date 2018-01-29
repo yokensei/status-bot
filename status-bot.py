@@ -86,6 +86,7 @@ if sc.rtm_connect():
                         text = message_format_end.format(name)
                         sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
                         sleep(5)
+                        profile["status_text"] = ""
                         profile["status_emoji"] = ""
                         sc.api_call("users.profile.set", profile=profile)
 
