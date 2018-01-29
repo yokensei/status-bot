@@ -75,7 +75,7 @@ if sc.rtm_connect():
                 if is_status_changed_event(res):
                     user = res["user"]
                     profile = user["profile"]
-                    name = "@" + user["name"]
+                    name = user["name"]
                     if is_target_status_emoji(profile):
                         text = message_format_on.format(name)
                         sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
