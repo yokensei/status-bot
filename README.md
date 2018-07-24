@@ -27,10 +27,15 @@ message_format_start={bot message without user name when start status set}
 message_format_end={bot message without user name when end status set}
 ```
 token ・・・ユーザーのtoken、あるいはbot用のトークンを指定します  
+
 room ・・・通知を行いたいSlackのチャンネル名を指定します(トークンの持ち主が所属するチャンネルである必要があります)
+
 status_start ・・・通知を発生させるステータスの名前
+
 status_end ・・・通知を発生させるステータスの名前。変更後に当該ステータスをクリアする(未実現)
+
 message_format_start ・・・status_start にステータスが変更された場合に通知されるメッセージのフォーマット。{} を指定することでユーザー名を含められます。
+
 message_format_end ・・・end_start にステータスが変更された場合に通知されるメッセージのフォーマット。{} を指定することでユーザー名を含められます。
 
 スクリプトを実行し、botを立ち上げます。
