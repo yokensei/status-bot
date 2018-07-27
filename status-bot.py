@@ -85,10 +85,8 @@ if sc.rtm_connect():
                     if is_target_status_emoji(profile, status_end):
                         text = message_format_end.format(name)
                         sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
-                        sleep(5)
-                        profile["status_text"] = ""
-                        profile["status_emoji"] = ""
-                        sc.api_call("users.profile.set", profile=profile)
+                        new_profile = {"status_text":"","status_emoji":""}
+                        sc.api_call("users.profile.set", profile=new_profile)
 
 else:
     logger.critical("Connection Failed, invalid token?")
