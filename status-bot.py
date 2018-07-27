@@ -58,14 +58,16 @@ def parse_required_option(config, option):
 
 config = SafeConfigParser()
 read_config(config)
-token = parse_required_option(config, "token")
+slack_token = parse_required_option(config, "slack_token")
+bot_token = parse_required_option(config, "bot_token")
 room = parse_required_option(config, "room")
 status_start = parse_required_option(config, "status_start")
 status_end = parse_required_option(config, "status_end")
 message_format_start = parse_required_option(config, "message_format_start")
 message_format_end = parse_required_option(config, "message_format_end")
 setup_logger(config)
-sc = SlackClient(token)
+sc = SlackClient(slack_token)
+bot_sc = SlackClient(bot_token)
 
 if sc.rtm_connect():
     logger.info("status-bot is up")
@@ -81,10 +83,10 @@ if sc.rtm_connect():
                     name = user["name"]
                     if is_target_status_emoji(profile, status_start):
                         text = message_format_start.format(name)
-                        sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
+                        bot_sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
                     if is_target_status_emoji(profile, status_end):
                         text = message_format_end.format(name)
-                        sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
+                        bot_sc.api_call("chat.postMessage", channel=room, text=text, as_user="1")
                         new_profile = {"status_text":"","status_emoji":""}
                         sc.api_call("users.profile.set", profile=new_profile)
 
